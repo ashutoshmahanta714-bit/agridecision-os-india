@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "AgriDecision OS India"
+message: "If this software supports your work, cite the repository and the original data sources."
+type: software
+authors:
+  - family-names: Mahanta
+    given-names: Ashutosh
+version: 0.1.0
+date-released: 2026-09-04
+license: MIT
+repository-code: "https://github.com/ashutoshmahanta714-bit/agridecision-os-india"
+

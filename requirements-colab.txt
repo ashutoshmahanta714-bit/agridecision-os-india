@@ -1,0 +1,18 @@
+# Core project dependencies. Colab already provides several of these packages.
+joblib>=1.3
+numpy>=1.26
+pandas>=2.1
+Pillow>=10.0
+python-dotenv>=1.0
+PyYAML>=6.0
+requests>=2.31
+scikit-learn>=1.4
+scipy>=1.11
+matplotlib>=3.8
+seaborn>=0.13
+
+# Install only when running the web applications.
+fastapi>=0.115
+plotly>=5.20
+streamlit>=1.40
+uvicorn>=0.30

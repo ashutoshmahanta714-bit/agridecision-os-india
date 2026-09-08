@@ -75,9 +75,20 @@ def standardise_mandi_frame(frame: pd.DataFrame) -> pd.DataFrame:
             result[column] = result[column].astype("string").str.strip()
             result[column] = result[column].replace({"": pd.NA, "nan": pd.NA, "None": pd.NA})
 
-    result["arrival_date"] = pd.to_datetime(
-        result["arrival_date"], errors="coerce", format="mixed", dayfirst=True
-    ).dt.normalize()
+    # Parse ISO dates first because ``dayfirst=True`` can reinterpret an
+    # unambiguous value such as 2026-06-01 as 2026-01-06. The official feed
+    # also contains day-first values, so parse only the remaining rows with
+    # that convention.
+    raw_dates = result["arrival_date"].astype("string")
+    iso_mask = raw_dates.str.match(r"^\d{4}-\d{1,2}-\d{1,2}(?:\D|$)", na=False)
+    parsed_dates = pd.Series(pd.NaT, index=result.index, dtype="datetime64[ns]")
+    parsed_dates.loc[iso_mask] = pd.to_datetime(
+        raw_dates.loc[iso_mask], errors="coerce", format="mixed"
+    )
+    parsed_dates.loc[~iso_mask] = pd.to_datetime(
+        raw_dates.loc[~iso_mask], errors="coerce", format="mixed", dayfirst=True
+    )
+    result["arrival_date"] = parsed_dates.dt.normalize()
 
     numeric_columns = ["min_price", "max_price", "modal_price", *OPTIONAL_NUMERIC_COLUMNS]
     for column in numeric_columns:

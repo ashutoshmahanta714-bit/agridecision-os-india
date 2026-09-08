@@ -6,6 +6,8 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+> **Live dashboard:** deployment link will be added here after the Streamlit Community Cloud build completes.
+
 > **Integrity note:** the repository includes synthetic data only to verify that the software runs. Synthetic metrics are automatically labelled and must never be presented as real-world model performance. Train and evaluate on the official historical data before publishing performance claims.
 
 ## Problem statement
@@ -149,4 +151,3 @@ This is a decision-support research project, not financial advice or a guarantee
 ## License
 
 [MIT](LICENSE). Official source data remains governed by its source licence and attribution requirements.
-
